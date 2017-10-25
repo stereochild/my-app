@@ -24,7 +24,5 @@ public class TrelloController {
             .filter(trelloBoardDto -> trelloBoardDto.getId() != null && trelloBoardDto.getName() != null)
             .filter(trelloBoardDto -> trelloBoardDto.getName().toLowerCase().contains("kodilla"))
             .forEach(trelloBoardDto -> System.out.println(trelloBoardDto.getId() + " " + trelloBoardDto.getName()));
-
     }
-
 }
