@@ -100,9 +100,9 @@ public class TrelloClientTest {
         when(restTemplate.getForObject(uri, TrelloBoardDto[].class)).thenReturn(null);
 
         //When
-        List<TrelloBoardDto> fetchedTrelloBoards = trelloClient.getTrelloBoards();
+        List<TrelloBoardDto> emptyList = trelloClient.getTrelloBoards();
 
         //Then
-        Assert.assertEquals(0, fetchedTrelloBoards.size());
+        Assert.assertEquals(0, emptyList.size());
     }
 }
