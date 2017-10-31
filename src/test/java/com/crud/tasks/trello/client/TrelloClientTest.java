@@ -3,7 +3,6 @@ package com.crud.tasks.trello.client;
 import com.crud.tasks.domain.CreatedTrelloCard;
 import com.crud.tasks.domain.TrelloBoardDto;
 import com.crud.tasks.domain.TrelloCardDto;
-import com.crud.tasks.domain.TrelloListDto;
 import com.crud.tasks.domain.badges.AttachmentsByType;
 import com.crud.tasks.domain.badges.Badges;
 import com.crud.tasks.domain.badges.Trello;
@@ -100,9 +99,9 @@ public class TrelloClientTest {
         when(restTemplate.getForObject(uri, TrelloBoardDto[].class)).thenReturn(null);
 
         //When
-        List<TrelloBoardDto> emptyList = trelloClient.getTrelloBoards();
+        boolean emptyList = trelloClient.getTrelloBoards().isEmpty();
 
         //Then
-        Assert.assertEquals(0, emptyList.size());
+        Assert.assertTrue(emptyList);
     }
 }
