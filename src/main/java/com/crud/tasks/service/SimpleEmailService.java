@@ -39,11 +39,11 @@ public class SimpleEmailService {
         mailMessage.setSubject(mail.getSubject());
         mailMessage.setText(mail.getMessage());
 
-        Optional.ofNullable(mailMessage)
-                .ifPresent(c ->mailMessage.setCc(mail.getToCc()));
+//        Optional.ofNullable(mail.getToCc())
+//                .ifPresent(c ->mailMessage.setCc(mail.getToCc()));
 
-//        Optional<String> carbonCopy = Optional.empty();
-//        carbonCopy.ifPresent(c ->mailMessage.setCc(mail.getToCc()));
+        Optional<String> carbonCopy = Optional.empty();
+        carbonCopy.ifPresent(c ->mailMessage.setCc(mail.getToCc()));
 
 //        if(!mail.getToCc().isEmpty()) {
 //        mailMessage.setCc(mail.getToCc());
