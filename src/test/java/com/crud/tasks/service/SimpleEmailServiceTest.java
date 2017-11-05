@@ -9,7 +9,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
-import static org.junit.Assert.*;
+import java.util.Optional;
+
 import static org.mockito.Mockito.verify;
 import static org.mockito.internal.verification.VerificationModeFactory.times;
 
@@ -31,9 +32,8 @@ public class SimpleEmailServiceTest {
         mailMessage.setTo(mail.getMailTo());
         mailMessage.setSubject(mail.getSubject());
         mailMessage.setText(mail.getMessage());
-        if(!mail.getToCc().isEmpty()){
-            mailMessage.setCc(mail.getToCc());
-        }
+        Optional.ofNullable(mail.getToCc())
+                .ifPresent(c ->mailMessage.setCc(mail.getToCc()));
 
         //When
         simpleEmailService.send(mail);

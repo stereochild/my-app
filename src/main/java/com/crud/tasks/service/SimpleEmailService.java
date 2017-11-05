@@ -9,6 +9,11 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
+import java.util.Optional;
+
+import static java.util.Optional.ofNullable;
+
 @Service
 public class SimpleEmailService {
 
@@ -33,9 +38,16 @@ public class SimpleEmailService {
         mailMessage.setTo(mail.getMailTo());
         mailMessage.setSubject(mail.getSubject());
         mailMessage.setText(mail.getMessage());
-        if(!mail.getToCc().isEmpty()) {
-        mailMessage.setCc(mail.getToCc());
-        }
+
+        Optional.ofNullable(mail.getToCc())
+                .ifPresent(c ->mailMessage.setCc(mail.getToCc()));
+
+//        Optional<String> carbonCopy = Optional.empty();
+//        carbonCopy.ifPresent(c ->mailMessage.setCc(mail.getToCc()));
+
+//        if(!mail.getToCc().isEmpty()) {
+//        mailMessage.setCc(mail.getToCc());
+//        }
         return mailMessage;
     }
 }
