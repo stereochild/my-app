@@ -42,12 +42,6 @@ public class SimpleEmailService {
         Optional.ofNullable(mail.getToCc())
                 .ifPresent(c ->mailMessage.setCc(mail.getToCc()));
 
-//        Optional<String> carbonCopy = Optional.empty();
-//        carbonCopy.ifPresent(c ->mailMessage.setCc(mail.getToCc()));
-
-//        if(!mail.getToCc().isEmpty()) {
-//        mailMessage.setCc(mail.getToCc());
-//        }
         return mailMessage;
     }
 }
