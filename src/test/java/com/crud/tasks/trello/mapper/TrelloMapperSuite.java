@@ -2,6 +2,7 @@ package com.crud.tasks.trello.mapper;
 
 import com.crud.tasks.domain.*;
 import com.crud.tasks.mapper.TrelloMapper;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -66,6 +67,7 @@ public class TrelloMapperSuite {
         Assert.assertEquals(1, trelloLists.size());
         Assert.assertEquals("1", trelloLists.get(0).getId());
         Assert.assertEquals("TestList", trelloLists.get(0).getName());
+        Assert.assertTrue(trelloLists.get(0).isClosed());
     }
 
     @Test
@@ -83,6 +85,7 @@ public class TrelloMapperSuite {
         Assert.assertEquals(1, trelloListDtos.size());
         Assert.assertEquals("10", trelloListDtos.get(0).getId());
         Assert.assertEquals("test_list", trelloListDtos.get(0).getName());
+        Assert.assertFalse(trelloListDtos.get(0).isClosed());
     }
 
     @Test
