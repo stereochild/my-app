@@ -2,7 +2,6 @@ package com.crud.tasks.trello.mapper;
 
 import com.crud.tasks.domain.*;
 import com.crud.tasks.mapper.TrelloMapper;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -20,9 +19,9 @@ public class TrelloMapperSuite {
         List<TrelloBoardDto> boardDtos = new ArrayList<>();
         boardDtos.add(new TrelloBoardDto("001", "TestBoard", listDtos));
 
-//        List<TrelloList> lists = new ArrayList<>();
-//        List<TrelloBoard> boards = new ArrayList<>();
-//        boards.add(new TrelloBoard("001", "TestBoard", lists));
+        List<TrelloList> lists = new ArrayList<>();
+        List<TrelloBoard> boards = new ArrayList<>();
+        boards.add(new TrelloBoard("001", "TestBoard", lists));
 
         //When
         List<TrelloBoard> trelloBoards = mapper.mapToBoards(boardDtos);
@@ -31,7 +30,7 @@ public class TrelloMapperSuite {
         Assert.assertEquals(1, trelloBoards.size());
         Assert.assertEquals("001", trelloBoards.get(0).getId());
         Assert.assertEquals("TestBoard", trelloBoards.get(0).getName());
-//        Assert.assertEquals(boards.get(0).getLists(), trelloBoards.get(0).getLists());
+        Assert.assertEquals(boards.get(0).getLists(), trelloBoards.get(0).getLists());
     }
 
     @Test
@@ -43,6 +42,10 @@ public class TrelloMapperSuite {
         List<TrelloBoard> boards = new ArrayList<>();
         boards.add(new TrelloBoard("01", "test_board", lists));
 
+        List<TrelloListDto> listDtos = new ArrayList<>();
+        List<TrelloBoardDto> boardDtos = new ArrayList<>();
+        boardDtos.add(new TrelloBoardDto("01", "test_borad", listDtos));
+
         //When
         List<TrelloBoardDto> trelloBoardDtos = mapper.mapToBoardsDto(boards);
 
@@ -50,6 +53,7 @@ public class TrelloMapperSuite {
         Assert.assertEquals(1, trelloBoardDtos.size());
         Assert.assertEquals("01", trelloBoardDtos.get(0).getId() );
         Assert.assertEquals("test_board", trelloBoardDtos.get(0).getName());
+        Assert.assertEquals(boardDtos.get(0).getLists(), trelloBoardDtos.get(0).getLists());
     }
 
     @Test
