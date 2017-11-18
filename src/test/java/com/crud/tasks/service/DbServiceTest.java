@@ -93,19 +93,19 @@ public class DbServiceTest {
         assertEquals(task.getContent(), resultedTask.getContent());
     }
 
-//    @Test
-//    public void shouldDeleteTask() {
-//        //Given
-//        Task firstTask = new Task(1l, "Task title", "Task content");
-//        Task secondTask = new Task(2l, "Task title", "Task content");
-//        List<Task> tasks = new ArrayList<>();
-//        tasks.add(firstTask);
-//        tasks.add(secondTask);
-//
-//        //When
-//        dbService.deleteById(2l);
-//
-//        //Then
-//        assertFalse(tasks.contains(secondTask));
-//    }
+    @Test
+    public void shouldDeleteTask() {
+        //Given
+        Task task = new Task(1l, "New title", "My content");
+        List<Task> tasks = new ArrayList<>();
+        tasks.add(task);
+
+        doNothing().when(taskRepository).deleteById(task.getId());
+
+        //When
+        dbService.deleteById(task.getId());
+
+        //Then
+        verify(taskRepository, times(1)).deleteById(task.getId());
+    }
 }
