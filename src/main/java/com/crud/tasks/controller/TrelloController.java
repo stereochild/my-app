@@ -14,8 +14,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/v1/trello")
 public class TrelloController {
+
     @Autowired
-    private TrelloFacade trelloFacade;
+    TrelloFacade trelloFacade;
 
     @RequestMapping(method = RequestMethod.GET, value = "/getTrelloBoards")
     public List<TrelloBoardDto> getTrelloBoards() {
