@@ -23,8 +23,7 @@ import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -42,17 +41,6 @@ public class TaskControllerTest {
 
     @MockBean
     private TaskMapper taskMapper;
-
-    public List<TaskDto> createTaskDtosList() {
-        List<TaskDto> taskDtos = new ArrayList<>();
-        TaskDto taskDto1 = new TaskDto(1L,"Title1","Content1");
-        TaskDto taskDto2 = new TaskDto(2L,"Title2","Content2");
-        TaskDto taskDto3 = new TaskDto(3L,"Title3","Content3");
-        taskDtos.add(taskDto1);
-        taskDtos.add(taskDto2);
-        taskDtos.add(taskDto3);
-        return taskDtos;
-    }
 
     @Test
     public void shouldGetTasks() throws Exception {
