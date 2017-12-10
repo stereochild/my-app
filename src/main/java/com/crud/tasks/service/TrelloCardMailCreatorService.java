@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class MailCreatorService {
+public class TrelloCardMailCreatorService implements MailTextCreator{
 
     @Autowired
     private CompanyConfig companyConfig;
@@ -24,7 +24,7 @@ public class MailCreatorService {
     @Qualifier("templateEngine")
     private TemplateEngine templateEngine;
 
-    public String buildTrelloCardEmail(String message) {
+    public String createMailMessageText(String message) {
 
         List<String> functionality = new ArrayList<>();
         functionality.add("You can manage your tasks");
@@ -44,6 +44,7 @@ public class MailCreatorService {
         context.setVariable("is_friend", false);
         context.setVariable("admin_config", adminConfig);
         context.setVariable("application_functionality", functionality);
+        context.setVariable("isList", true);
         return templateEngine.process("mail/created-trello-card-mail", context);
     }
 }
