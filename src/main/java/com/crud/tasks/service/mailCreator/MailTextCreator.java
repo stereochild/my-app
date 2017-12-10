@@ -1,4 +1,4 @@
-package com.crud.tasks.service;
+package com.crud.tasks.service.mailCreator;
 
 public interface MailTextCreator {
 

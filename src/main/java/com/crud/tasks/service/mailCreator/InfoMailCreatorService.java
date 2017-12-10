@@ -1,4 +1,4 @@
-package com.crud.tasks.service;
+package com.crud.tasks.service.mailCreator;
 
 import com.crud.tasks.config.AdminConfig;
 import com.crud.tasks.config.CompanyConfig;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class TrelloCardMailCreatorService implements MailTextCreator{
+public class InfoMailCreatorService implements MailTextCreator {
 
     @Autowired
     private CompanyConfig companyConfig;
@@ -26,26 +26,24 @@ public class TrelloCardMailCreatorService implements MailTextCreator{
 
     public String createMailMessageText(String message) {
 
-        List<String> functionality = new ArrayList<>();
-        functionality.add("You can manage your tasks");
-        functionality.add("Provides connection with Trello Account");
-        functionality.add("Application allows sending tasks to Trello");
+        List<String> tasks = new ArrayList<>();
+        tasks.add("Do task");
+        tasks.add("Do task");
+        tasks.add("Do task");
 
         Context context = new Context();
         context.setVariable("message", message);
-        context.setVariable("preview_message", "New card:...");
+        context.setVariable("preview_message", "Currently in database...");
         context.setVariable("tasks_url", "http://localhost:8888/crud");
         context.setVariable("button", "Visit website");
-        context.setVariable("admin_name", adminConfig.getAdminName());
-        context.setVariable("goodbye_message", "See you later aligator!");
+        context.setVariable("goodbye_message", "Goodbye!");
         context.setVariable("company_name", companyConfig.getCompanyName());
-        context.setVariable("company_contact", "@: " + companyConfig.getCompanyMail() + " mobile: " + companyConfig.getCompanyPhone());
+        context.setVariable("company_contact", "@: " + companyConfig.getCompanyMail() + "    mobile: " + companyConfig.getCompanyPhone());
         context.setVariable("company_goal", companyConfig.getCompanyGoal());
-        context.setVariable("show_button", false);
-        context.setVariable("is_friend", false);
+        context.setVariable("show_button", true);
+        context.setVariable("is_friend", true);
         context.setVariable("admin_config", adminConfig);
-        context.setVariable("application_functionality", functionality);
-        context.setVariable("isList", true);
-        return templateEngine.process("mail/created-trello-card-mail", context);
+        context.setVariable("tasks", tasks);
+        return templateEngine.process("mail/info-mail", context);
     }
 }
