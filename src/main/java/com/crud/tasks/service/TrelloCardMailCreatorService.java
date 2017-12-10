@@ -33,6 +33,7 @@ public class TrelloCardMailCreatorService implements MailTextCreator{
 
         Context context = new Context();
         context.setVariable("message", message);
+        context.setVariable("preview_message", "New card:...");
         context.setVariable("tasks_url", "http://localhost:8888/crud");
         context.setVariable("button", "Visit website");
         context.setVariable("admin_name", adminConfig.getAdminName());

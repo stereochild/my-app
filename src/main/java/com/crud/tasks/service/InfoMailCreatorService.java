@@ -28,6 +28,7 @@ public class InfoMailCreatorService implements MailTextCreator {
 
         Context context = new Context();
         context.setVariable("message", message);
+        context.setVariable("preview_message", "Currently in database...");
         context.setVariable("tasks_url", "http://localhost:8888/crud");
         context.setVariable("button", "Visit website");
         context.setVariable("goodbye_message", "Goodbye!");
